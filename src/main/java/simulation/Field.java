@@ -46,6 +46,8 @@ public class Field {
 
 
         }
-        System.out.println(field);
+        System.out.flush();
+        System.out.print("\r" + field);
+//        System.out.println(field);
     }
 }

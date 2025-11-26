@@ -20,7 +20,7 @@ public class Helpers {
         return result + 1;
     }
 
-    public static int findPathLength(int start, int end) {
+    public int findPathLength(int start, int end) {
 
         int count = 0;
 
@@ -50,14 +50,14 @@ public class Helpers {
         return count;
     }
 
-    public static int findPathLengthSSS(Point start, Point end) {
+    public  int findPathLength(Point start, Point end) {
         int x = findPathLength(start.getX(), end.getX());
         int y = findPathLength(start.getY(), end.getY());
 
         return Math.max(x, y);
     }
 
-    public static void findPath(int start, int end, List<Integer> coordinates) {
+    private void findPath(int start, int end, List<Integer> coordinates) {
 
         if (start == end) {
             coordinates.add(start);
@@ -83,7 +83,7 @@ public class Helpers {
         }
     }
 
-    public static List<Point> generateCoordinates(Point start, Point end) {
+    public List<Point> generateCoordinates(Point start, Point end) {
         List<Integer> xList = new ArrayList<>();
         List<Integer> yList = new ArrayList<>();
         List<Point> pointList = new ArrayList<>();
@@ -99,10 +99,10 @@ public class Helpers {
         findPath(yStart, yEnd, yList);
 
         int stepsLength = Math.max(xList.size(), yList.size());
-        int findPathLengthSSS = findPathLengthSSS(start, end);
+        int findPathLength = findPathLength(start, end);
 
-        System.out.println(stepsLength == findPathLengthSSS);
-        System.out.println("Количество шагов:" + stepsLength + "дубль " + findPathLengthSSS);
+        System.out.println(stepsLength == findPathLength);
+        System.out.println("Количество шагов:" + stepsLength + "дубль " + findPathLength);
 
 
         for (int i = 0; i < stepsLength; i++) {
