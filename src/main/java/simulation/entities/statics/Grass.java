@@ -1,5 +1,10 @@
 package simulation.entities.statics;
 
-public class Grass {
+import simulation.entities.Entity;
 
+public class Grass extends Entity {
+
+    public Grass() {
+        super("\uD83C\uDF3F");
+    }
 }

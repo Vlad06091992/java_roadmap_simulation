@@ -1,7 +1,8 @@
 package simulation.entities.predators;
 
-import simulation.Helpers;
-import simulation.Point;
+import simulation.data.Helpers;
+import simulation.data.Point;
+import simulation.entities.Animal;
 import simulation.entities.Entity;
 import simulation.entities.herbivores.Herbivor;
 
@@ -9,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Predator extends Entity {
+public class Predator extends Animal {
 
     Helpers helpers = new Helpers();
 
@@ -19,10 +20,7 @@ public class Predator extends Entity {
         Point target = findNearestHerbivore();
 
         List<Point> points = helpers.generateCoordinates(point, target);
-        System.out.println(points);
         super.setPoint(points.get(0));
-//        System.out.println();
-
     }
 
     public Predator(String logo) {
@@ -39,7 +37,7 @@ public class Predator extends Entity {
         Map<Point, Entity> entitiesMap = super.getEntitiesMap();
 
         for (Entity entity : entitiesMap.values()) {
-            if (!(entity instanceof Predator)) {
+            if (entity instanceof Herbivor) {
                 int value = helpers.findPathLength(super.getPoint(), entity.getPoint());
                 herbivorePoints.put(value, entity);
                 if (value < min) {
@@ -49,7 +47,6 @@ public class Predator extends Entity {
 
         }
         Point target = herbivorePoints.get(min).getPoint();
-        System.out.println(target.toString());
 
         return target;
 

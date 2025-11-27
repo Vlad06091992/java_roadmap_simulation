@@ -1,4 +1,4 @@
-package simulation;
+package simulation.data;
 
 import java.util.Objects;
 

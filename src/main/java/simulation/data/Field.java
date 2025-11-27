@@ -1,8 +1,6 @@
-package simulation;
+package simulation.data;
 
 import simulation.entities.Entity;
-import simulation.entities.herbivores.*;
-import simulation.entities.predators.*;
 
 import java.util.*;
 
@@ -26,10 +24,18 @@ public class Field {
 
     }
 
+    public void cleanConsoleOutput() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception E) {
+            System.out.println(E);
+        }
+    }
 
 
 
     public void showMap(Map<Point, Entity> entities) {
+        cleanConsoleOutput();
 
         String field = "";
         for (int i = 0; i < points.size(); i++) {
@@ -46,8 +52,7 @@ public class Field {
 
 
         }
-        System.out.flush();
-        System.out.print("\r" + field);
-//        System.out.println(field);
+
+        System.out.println(field);
     }
 }

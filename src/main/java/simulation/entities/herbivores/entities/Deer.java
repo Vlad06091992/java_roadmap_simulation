@@ -1,6 +1,6 @@
-package simulation.entities.herbivores;
+package simulation.entities.herbivores.entities;
 
-import simulation.entities.Entity;
+import simulation.entities.herbivores.Herbivor;
 
 public class Deer extends Herbivor {
     public Deer() {

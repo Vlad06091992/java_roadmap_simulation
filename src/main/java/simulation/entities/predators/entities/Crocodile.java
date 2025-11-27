@@ -1,4 +1,6 @@
-package simulation.entities.predators;
+package simulation.entities.predators.entities;
+
+import simulation.entities.predators.Predator;
 
 public class Crocodile extends Predator {
     public Crocodile() {

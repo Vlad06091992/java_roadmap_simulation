@@ -2,20 +2,12 @@ package simulation.entities;
 
 
 
-import simulation.Point;
+import simulation.data.Point;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Entity {
-    public void setEntitiesMap(Map<Point, Entity> entitiesMap) {
-        this.entitiesMap = entitiesMap;
-    }
-
-    public Map<Point, Entity> getEntitiesMap() {
-        return entitiesMap;
-    }
-
     private Map<Point, Entity> entitiesMap = new HashMap<>();
     private Point point;
     private String logo;
@@ -24,12 +16,19 @@ public abstract class Entity {
         this.logo = logo;
     }
 
-    public String getLogo() {
-        return logo;
+
+
+    public void setEntitiesMap(Map<Point, Entity> entitiesMap) {
+        this.entitiesMap = entitiesMap;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public Map<Point, Entity> getEntitiesMap() {
+        return entitiesMap;
+    }
+
+
+    public String getLogo() {
+        return logo;
     }
 
 

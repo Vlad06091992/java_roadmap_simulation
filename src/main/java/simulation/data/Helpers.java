@@ -1,4 +1,4 @@
-package simulation;
+package simulation.data;
 
 import java.util.*;
 
@@ -101,10 +101,6 @@ public class Helpers {
         int stepsLength = Math.max(xList.size(), yList.size());
         int findPathLength = findPathLength(start, end);
 
-        System.out.println(stepsLength == findPathLength);
-        System.out.println("Количество шагов:" + stepsLength + "дубль " + findPathLength);
-
-
         for (int i = 0; i < stepsLength; i++) {
             int x = i > xList.size() - 1 ? xList.get(xList.size() - 1) : xList.get(i);
             int y = i > yList.size() - 1 ? yList.get(yList.size() - 1) : yList.get(i);
@@ -116,6 +112,38 @@ public class Helpers {
 //        pointList.add(0,start);
 
         return pointList;
+
+    }
+
+    public Point generateNextStepCoordinates(Point start, Point end) {
+        List<Integer> xList = new ArrayList<>();
+        List<Integer> yList = new ArrayList<>();
+        List<Point> pointList = new ArrayList<>();
+
+        int xStart = start.getX();
+        int yStart = start.getY();
+
+        int xEnd = end.getX();
+        int yEnd = end.getY();
+
+
+        findPath(xStart, xEnd, xList);
+        findPath(yStart, yEnd, yList);
+
+        int stepsLength = Math.max(xList.size(), yList.size());
+        int findPathLength = findPathLength(start, end);
+
+        for (int i = 0; i < 1; i++) {
+            int x = i > xList.size() - 1 ? xList.get(xList.size() - 1) : xList.get(i);
+            int y = i > yList.size() - 1 ? yList.get(yList.size() - 1) : yList.get(i);
+
+            pointList.add(new Point(x, y));
+        }
+
+//        pointList.add(end);
+//        pointList.add(0,start);
+
+        return pointList.get(0);
 
     }
 }

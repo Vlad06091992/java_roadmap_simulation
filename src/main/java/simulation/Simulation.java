@@ -1,46 +1,55 @@
 package simulation;
 
+import simulation.data.Field;
+import simulation.data.Helpers;
+import simulation.data.Point;
+import simulation.entities.Animal;
 import simulation.entities.Entity;
-import simulation.entities.herbivores.*;
-import simulation.entities.predators.*;
+import simulation.entities.herbivores.entities.Sheep;
+import simulation.entities.predators.entities.Tiger;
+import simulation.entities.statics.Grass;
 
 import java.util.*;
 
 public class Simulation {
 
-    private static Field field = new Field(20, 20);
-    private static Map<Point, Entity> entitiesMap = new HashMap<>();
-    private static ArrayList<Entity> entities = new ArrayList<>(Arrays.asList(
-//            new Tiger(),
+    private static Field field;
+    private static final Map<Point, Entity> entitiesMap = new HashMap<>();
+    private static final ArrayList<Entity> entities = new ArrayList<>(Arrays.asList(
+            new Tiger(),
 //            new Wolf(),
 //            new Fox(),
-            new Crocodile(),
+//            new Crocodile(),
 //            new Bear(),
-            new Rabbit(),
+//            new Rabbit(),
 //            new Cow(),
-            new Deer()
-//            new Sheep(),
+//            new Deer(),
+            new Sheep(),
+//            new Grass(),
+//            new Grass(),
+//            new Grass(),
+            new Grass()
 //            new Goat()
     ));
 
     private static final Helpers helpers = new Helpers();
 
-    public static void main(String[] args) throws InterruptedException {
-        init();
+
+    public void run(int x,int y,int sleep) throws InterruptedException {
+        init(x,y);
         while (true) {
-            Thread.sleep(500);
-            run();
+            Thread.sleep(sleep);
+            action();
         }
 
     }
 
-    private static void run() throws InterruptedException {
+    private static void action() throws InterruptedException {
 
 //сущности меняют свои позиции
         for (Entity entity : entities) {
-            if (entity instanceof Predator) {
-                System.out.println(entity.getPoint());
-                ((Crocodile) entity).run();
+            if (entity instanceof Animal) {
+                ((Animal) entity).run();
             }
         }
 
@@ -64,11 +73,13 @@ public class Simulation {
     }
 
 
-    private static void init() {
+    private static void init(int x, int y)  {
+
+        field = new Field(x,y);
 
         // сущностей создали, надо сгенерировать им позиции
         for (int i = 0; i < entities.size(); i++) {
-            Point currentPoint = new Point(helpers.getRandomInt(20, "x"), helpers.getRandomInt(20, "y"));
+            Point currentPoint = new Point(helpers.getRandomInt(x, "x"), helpers.getRandomInt(y, "y"));
             Entity entity = entities.get(i);
             entity.setPoint(currentPoint);
         }
@@ -86,8 +97,6 @@ public class Simulation {
         }
 
         field.showMap(entitiesMap);
-//        System.out.println("----------------------------------");
-//        System.out.println(entities.get(3).getEntitiesMap().toString());
     }
 
 
