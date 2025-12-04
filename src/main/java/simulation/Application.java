@@ -5,8 +5,11 @@ package simulation;
  *
  */
 public class Application {
+
+    int step = 0;
+
     public static void main(String[] args) throws InterruptedException {
         Simulation simulation = new Simulation();
-        simulation.run(10,10,50);
+        simulation.run(20,20,700);
     }
 }

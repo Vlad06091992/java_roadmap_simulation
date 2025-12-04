@@ -23,6 +23,8 @@ public class Predator extends AliveEntity {
     @Override
     public void run() {
 
+        this.health = this.health - 10;
+
 
         Point point = super.getPoint();
         Optional<Point> nearestHerbivore = findNearestHerbivore();
