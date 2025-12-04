@@ -21,26 +21,33 @@ public class Simulation {
     private static Field field;
     private static final Map<Point, Entity> entitiesMap = new HashMap<>();
     private static ArrayList<Entity> entities = new ArrayList<>(Arrays.asList(
+
+            //камни
+            new Rock(),
+            new Rock(),
+            new Rock(),
+            new Rock(),
+            new Rock(),
+            new Rock(),
+
+            //хищники
 //            new Tiger(),
 //            new Wolf(),
-            new Fox(),
-            new Crocodile(),
-//            new Bear(),
+//            new Fox(),
+//            new Crocodile(),
+            new Bear(),
+            //травоядные
+
+//            new Cow(),
+//            new Sheep(),
 //            new Rabbit(),
-            new Cow(),
-//            new Rock(),
-//            new Rock(),
-//            new Rock(),
-//            new Rock(),
-//            new Rock(),
-//            new Rock(),
-            new Deer(),
-            new Sheep(),
-            new Grass(),
-            new Grass(),
-            new Grass(),
-            new Grass()
-//            new Goat()
+//            new Deer(),
+            new Goat(),
+            //трава
+                 new Grass()
+//            new Grass(),
+//            new Grass(),
+//            new Grass(),
     ));
 
     private static final Utils helpers = new Utils();

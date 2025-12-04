@@ -5,6 +5,6 @@ import simulation.entities.Entity;
 
 public class Rock extends Entity {
     public Rock() {
-        super("\\uD83E\\uDEA8");
+        super("\uD83C\uDFD4️");
     }
 }
