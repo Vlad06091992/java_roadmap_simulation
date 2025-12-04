@@ -1,20 +1,19 @@
 package simulation;
 
 import simulation.data.Field;
-import simulation.data.Utils;
 import simulation.data.Point;
+import simulation.data.Utils;
 import simulation.entities.AliveEntity;
 import simulation.entities.Entity;
-import simulation.entities.herbivores.Herbivore;
 import simulation.entities.herbivores.entities.*;
-import simulation.entities.predators.Predator;
 import simulation.entities.predators.entities.*;
 import simulation.entities.statics.Grass;
 import simulation.entities.statics.Rock;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Simulation {
 
@@ -31,45 +30,44 @@ public class Simulation {
             new Rock(),
 
             //хищники
-//            new Tiger(),
-//            new Wolf(),
-//            new Fox(),
-//            new Crocodile(),
-            new Bear(),
+            new Tiger(100,50),
+            new Wolf(100,30),
+            new Fox(100,20),
+            new Crocodile(100,80),
+            new Bear(100,100),
             //травоядные
 
-//            new Cow(),
-//            new Sheep(),
-//            new Rabbit(),
-//            new Deer(),
-            new Goat(),
+            new Cow(600,40),
+            new Sheep(200,30),
+            new Rabbit(100,20),
+            new Deer(800,70),
+            new Goat(400,30),
             //трава
-                 new Grass()
-//            new Grass(),
-//            new Grass(),
-//            new Grass(),
+            new Grass(700),
+            new Grass(800),
+            new Grass(900),
+            new Grass(1000)
     ));
 
     private static final Utils helpers = new Utils();
 
 
-    public void run(int x,int y,int sleep) throws InterruptedException {
+    public void run(int x, int y, int sleep) throws InterruptedException {
         init(x, y);
-//        while (true) {
-        for (;;) {
+        for (; ; ) {
             Thread.sleep(sleep);
             action();
         }
     }
 
-    public void  action() throws InterruptedException {
+    public void action() throws InterruptedException {
         for (int i = 0; i < entities.size(); i++) {
             Entity entity = entities.get(i);
             if (entity instanceof AliveEntity) {
-               if (((AliveEntity) entity).getHealth() <= 0) {
-                   entities.remove(entity);
-                   entitiesMap.remove(entity.getPoint());
-               }
+                if (((AliveEntity) entity).getHealth() <= 0) {
+                    entities.remove(entity);
+                    entitiesMap.remove(entity.getPoint());
+                }
             }
         }
 
@@ -77,34 +75,26 @@ public class Simulation {
         for (int i = 0; i < entities.size(); i++) {
             Entity entity = entities.get(i);
             if (entity instanceof AliveEntity) {
-             //по идее вот здесь сущности совершают ход, опираясь на старое состояние entitiesMap, чтобы не накладываться друг на друга
+                //по идее вот здесь сущности совершают ход, опираясь на старое состояние entitiesMap, чтобы не накладываться друг на друга
                 ((AliveEntity) entity).run();
             }
         }
-
-////        entitiesMap.clear();
-//
-//        //наносим их на карту
-//        for (int i = 0; i < entities.size(); i++) {
-//            Entity entity = entities.get(i);
-////            entitiesMap.put(entity.getPoint(), entity);
-//        }
-
 
         field.showMap(entitiesMap);
 
     }
 
 
-    public  void init(int x, int y)  {
+    public void init(int x, int y) {
 
-        field = new Field(x,y);
+        field = new Field(x, y);
 
         // сущностей создали, надо сгенерировать им позиции
         for (int i = 0; i < entities.size(); i++) {
-            Point currentPoint = new Point(helpers.getRandomInt(x, "x"), helpers.getRandomInt(y, "y"));
+//            Point currentPoint = new Point(helpers.getRandomInt(x, "x"), helpers.getRandomInt(y, "y"));
+            Point point = helpers.getUniqRandomPoint(x);
             Entity entity = entities.get(i);
-            entity.setPoint(currentPoint);
+            entity.setPoint(point);
         }
 
         //наносим их на карту

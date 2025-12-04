@@ -9,10 +9,8 @@ import simulation.entities.statics.Grass;
 import java.util.*;
 
 public class Herbivore extends AliveEntity {
-
-
-    public Herbivore(String logo) {
-        super(logo, 300);
+    public Herbivore(String logo, int health, int damage) {
+        super(logo, health, damage);
     }
 
     public Optional<Point> findNearestGrass() {
@@ -85,8 +83,13 @@ public class Herbivore extends AliveEntity {
         Optional<Point> nearestPredator = findNearestPredator();
         Set<Point> availablePoints = utils.getAvailablePoints(point, getField(), getEntitiesMap());
 
+        int n = new Random().nextInt(availablePoints.size());
+
+//        if(n < 0){
+//            return;
+//        }
         Optional<Point> randomPoint = availablePoints.stream()
-                .skip(new Random().nextInt(availablePoints.size()))
+                .skip(n)
                 .findFirst();
 
 
@@ -105,9 +108,6 @@ public class Herbivore extends AliveEntity {
                 entitiesMap.put(getPoint(), this);
                 return;
             }
-        } else {
-            System.out.println("");
-
         }
         int pathLength = utils.findPathLength(point, nearestGrass.get());
 

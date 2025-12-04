@@ -10,10 +10,11 @@ import java.util.*;
 
 public class Predator extends AliveEntity {
 
+    public Predator(String logo, int health, int damage) {
+        super(logo, health,damage);
+    }
+
     public void eat(Point herbivorePoint) {
-
-        int damage = 10;
-
         Herbivore herbivore = (Herbivore) super.getEntitiesMap().get(herbivorePoint);
         herbivore.beEaten(damage);
     }
@@ -58,9 +59,9 @@ public class Predator extends AliveEntity {
         entitiesMap.put(getPoint(), this);
     }
 
-    public Predator(String logo) {
-        super(logo, 100);
-    }
+//    public Predator(String logo, int health, int damage) {
+//        super(logo, 100);
+//    }
 
 
     public Optional<Point> findNearestHerbivore() {
