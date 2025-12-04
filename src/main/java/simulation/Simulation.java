@@ -13,6 +13,7 @@ import simulation.entities.statics.Grass;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Simulation {
 
@@ -48,20 +49,15 @@ public class Simulation {
     }
 
     public void  action() throws InterruptedException {
-
-        entities = entities.stream()
-        .filter(entity -> {
-                    if ((entity instanceof Grass)) {
-                        return ((AliveEntity) entity).getHealth() > 0;
-//                        return true;  // явный возврат true
-                    } else {
-                        Class<? extends Entity> aClass = entity.getClass();
-                        System.out.println(aClass);
-                        return true;
-                    }
-                })
-                .collect(Collectors.toCollection(ArrayList::new));
-
+        for (int i = 0; i < entities.size(); i++) {
+            Entity entity = entities.get(i);
+            if (entity instanceof AliveEntity) {
+               if (((AliveEntity) entity).getHealth() <= 0) {
+                   entities.remove(entity);
+                   entitiesMap.remove(entity.getPoint());
+               }
+            }
+        }
 
         //сущности меняют свои позиции
         for (int i = 0; i < entities.size(); i++) {
