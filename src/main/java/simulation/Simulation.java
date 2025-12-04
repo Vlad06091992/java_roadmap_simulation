@@ -10,6 +10,7 @@ import simulation.entities.herbivores.entities.*;
 import simulation.entities.predators.Predator;
 import simulation.entities.predators.entities.*;
 import simulation.entities.statics.Grass;
+import simulation.entities.statics.Rock;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,17 +23,23 @@ public class Simulation {
     private static ArrayList<Entity> entities = new ArrayList<>(Arrays.asList(
 //            new Tiger(),
 //            new Wolf(),
-//            new Fox(),
+            new Fox(),
             new Crocodile(),
 //            new Bear(),
 //            new Rabbit(),
-//            new Cow(),
-//            new Deer(),
+            new Cow(),
+//            new Rock(),
+//            new Rock(),
+//            new Rock(),
+//            new Rock(),
+//            new Rock(),
+//            new Rock(),
+            new Deer(),
             new Sheep(),
+            new Grass(),
+            new Grass(),
+            new Grass(),
             new Grass()
-//            new Grass(),
-//            new Grass(),
-//            new Grass(),
 //            new Goat()
     ));
 

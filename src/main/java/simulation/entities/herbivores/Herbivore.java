@@ -94,13 +94,6 @@ public class Herbivore extends AliveEntity {
         if (nearestGrass.isEmpty() || randomPoint.isEmpty()) {
             return;
         }
-        int pathLength = utils.findPathLength(point, nearestGrass.get());
-
-        if (pathLength == 0) {
-            eat(nearestGrass.get());
-            return;
-        }
-
 
         if (nearestPredator.isPresent()) {
             int lengthToPredator = utils.findPathLength(point, nearestPredator.get());
@@ -110,8 +103,21 @@ public class Herbivore extends AliveEntity {
                 entitiesMap.remove(getPoint());
                 super.setPoint(randomPoint.get());
                 entitiesMap.put(getPoint(), this);
+                return;
             }
+        } else {
+            System.out.println("");
+
         }
+        int pathLength = utils.findPathLength(point, nearestGrass.get());
+
+        if (pathLength == 0) {
+            eat(nearestGrass.get());
+            return;
+        }
+
+
+
 
 
 

@@ -1,4 +1,10 @@
 package simulation.entities.statics;
 
-public class Rock {
+import simulation.entities.AliveEntity;
+import simulation.entities.Entity;
+
+public class Rock extends Entity {
+    public Rock() {
+        super("\\uD83E\\uDEA8");
+    }
 }
